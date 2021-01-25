@@ -1,0 +1,458 @@
+//- Modulo de Abstracts con variables, funciones y mixines
+@import './abstracts'
+
+//- Styles del portal
+
+\:root
+	--color-rojo: #C00
+	--color-azul: #2276d6
+	--color-verde: #117C00
+	--color-gold: #daa520
+	--color-gris-fondo: #FCFCFC
+	--color-gris-borde: #DDD
+	--color-text: #000
+	--color-text-oscuro: #333
+	--color-text-calro: #666
+	--color-background-calro: steelblue
+	
+html,
+body
+	font:
+		family: $fontPrin
+		size: $fontSize
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	//background: #EEE
+	background: var(--color-gris-fondo)
+	&.is-dark-mode
+		background: #1a1a1a
+
+	@media (prefers-reduced-motion: reduce)
+		*
+			&:before,
+			&:after
+				animation-delay: -1ms !important
+				animation-duration: -1ms !important
+				animation-iteration-count: -1ms !important
+				transition-duration: -1ms !important
+				transition-delay: -1ms !important
+		
+code
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
+
+#root
+	text-align: center
+	padding-top: 80px
+	&.desktopView
+		padding-top: 130px
+
+main
+	min-height: calc(100vh - 116px)
+
+section,
+article
+	content-visiblity: auto
+
+.wrapper
+	min-height: 550px
+	background: #f5f2f1
+	padding-top: 0!important
+	
+.container
+	box-sizing: border-box
+	position: relative
+	width: 100%
+	//max-width: 1500px
+	max-width: 96%
+	height: auto
+	margin: auto
+	padding: 0 20px
+	@media only screen and (max-width: 760px)
+		padding: 0
+		max-width: 100%
+
+.miCuentaMenu
+	display: flex
+	flex-firection: row
+	flex-wrap: wrap
+	padding: 50px 0 20px
+	box-sizing: border-box
+	.card
+		&.btn
+			box-sizing: border-box
+			width: 100%
+			max-width: calc(33.3% - 20px)
+			margin: 10px
+			padding: 45px
+			font-size: 16px
+			font-weight: 600
+			background-color: white//#eee
+			color: inherit
+			box-shadow: -2px 2px 13px rgba(0, 0, 0, 0.15)
+			&:hover
+				background-color: #eee
+			@media only screen and (max-width: 1100px)
+				max-width: calc(50% - 20px)
+			@media only screen and (max-width: 780px)
+				max-width: calc(100% - 20px)
+			.is-dark-mode &
+				background: #666
+		&.myOrders,
+		&.myAddress,
+		&.myWishlist,
+		&.myProfile,
+		&.myPyment,
+		&.myCuppon,
+		&.myTelmex,
+		&.logout
+			&:before
+				content: ''
+				margin-right: 10px
+				background-size: contain
+				background-repeat: no-repeat
+				background-position: center
+				width: 50px
+				height: 40px
+				margin-left: -30px
+				display: inline-block
+				.is-dark-mode &
+					filter: invert(1)
+
+		&.myTelmex
+			&:before
+				background-image: url(/img/icoTelmex.png)
+		&.myOrders
+			&:before
+				background-image: url(/img/icono_mis_pedidos.svg)
+		&.myAddress
+			&:before
+				background-image: url(/img/icono_mis_direcciones.svg)
+				height: 50px
+		&.myWishlist
+			&:before
+				background-image: url(/img/icono_mi_lista_de_deseos.svg)
+		&.myProfile
+			&:before
+				background-image: url(/img/icono_mi_perfil.svg)
+				height: 50px
+		&.myPyment
+			&:before
+				background-image: url(/img/icono_mis_metodos_de_pago.svg)
+		&.myCuppon
+			&:before
+				background-image: url(/img/icono_mis_cuponess.svg)
+				height: 50px
+		&.logout
+			&:before
+				background-image: url(/img/icono_mi_logout.svg)
+	
+.cf
+	@extend %cf
+
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6
+	&.light
+		font-weight: 300
+	&.normal
+		font-weight: 400
+	&.medium
+		font-weight: 500
+	&.bold
+		font-weight: 600
+
+.btn
+	-webkit-box-sizing: border-box
+	box-sizing: border-box
+	display: flex
+	flex-direction: row
+	align-items: center
+	justify-content: center
+	border-radius: 5px
+	margin-bottom: 10px
+	font-size: 13px
+	font-weight: 600
+	text-decoration: none
+	padding: 8px 16px
+	cursor: pointer
+	width: 100%
+	height: 40px
+	&:focus
+		outline: none
+	&.rojo
+		background-color: #C00
+		color: #fff
+		border: 1px solid rgba(0,0,0,0)
+		font-weight: 500
+		&:active
+			background-color: darken(#C00,10) 
+	&.blanco
+		background-color: #FFF
+		color: #000
+		border: 1px solid rgba(#ddd,1)
+		font-weight: 500
+		&:active
+			background-color: darken(#FFF,10) 
+		.is-dark-mode &
+			background-color: #ccc
+			color: black
+			border: 1px solid #ddd
+			font-weight: 500
+	&.gris
+		background-color: #DDD
+		color: #000
+		border: 1px solid rgba(#ddd,1)
+		font-weight: 500
+		&:active
+			background-color: darken(#DDD,10) 
+	&.facebook
+		background-color: #3B5998
+		color: #FFF
+		border: 1px solid rgba(#3B5998,0)
+		font-weight: 500
+		&:active
+			background-color: darken(#3B5998,10)
+	&.next
+		&:after
+			content: ">"
+			margin-left: 5px
+	&.prev
+		&:before
+			content: "<"
+			margin-right: 5px
+	&.plus
+		&:after
+			content: "+"
+			margin-left: 9px
+			font-weight: 700
+			font-size: 14px
+			border-radius: 50%
+			border: 2px solid red
+			width: 17px
+			height: 16px
+			text-align: center
+
+ul
+	&.dottedList
+		li
+			position: relative
+			margin-bottom: $min-spacer
+			&:before
+				color: $azul !important
+				content: $bullet
+				margin-right: $min-spacer
+			&:last-child
+				margin-bottom: 0
+	&.dottedline
+		li
+			font-weight: 300
+			margin-bottom: $min-spacer
+			&:before
+				content: '-'
+				display: inline-block
+
+.ventana_emergente,
+.ventana_sussess
+	+bx
+	display: none
+	padding: 8px 16px 8px 41.6px
+	background: #f2f2f2
+	border: 1px solid #C00
+	margin: 0 0 12px
+	width: 100%
+	position: relative
+
+.fileset
+	.error
+		box-sizing: border-box
+		color: red
+		text-align: left
+		padding: 10px 0
+		font-size: 13px
+
+
+.contProductCategory
+	border-bottom: 1px solid #ddd
+
+.link
+	color: darken(#4990e2,10)
+	text-decoration: underline
+	.is-dark-mode &
+		color: #78b1f3
+	&:active
+		darken(#4990e2,15)
+
+
+		
+
+.sliderPrincipal
+    max-height: 400px
+    .contSlideP
+        overflow: auto
+        >
+            a
+                display: table-cell
+                padding: 0 20px
+.slick-slide
+    height: auto
+    box-sizing: border-box
+    img
+        height: 100%
+        margin: auto
+        width: 95%
+        max-height: 370px
+        box-sizing: border-box
+
+.cardSliderHome
+    position: relative
+    p
+        position: absolute
+        display: none
+        visibility: hidden
+
+
+.slick-prev,
+.slick-next 
+	background: rgba(0,0,0,0.7) !important
+	z-index: 1 !important
+	opacity: 0 !important
+	width: 42px !important
+	height: 60px !important
+	opacity: 0.5 !important
+	&:hover
+		opacity: 1 !important
+	&:before
+		content: "" !important
+		color: transparent !important
+		background-position: center !important
+		background-repeat: no-repeat !important
+		//background-size: contain !important
+		width: 42px
+		height: 60px
+		display: block
+
+
+.slick-prev
+	left: 0 !important
+	border-radius: 0 10px 10px 0
+	&:before
+		background-image: url(/img/flecha-back-32px.png)
+
+.slick-next 
+	right: 0 !important
+	border-radius: 10px 0 0 10px
+	&:before
+		background-image: url(/img/flecha-next-32px.png)
+
+// .slick-slider
+// 	&.slick-initialized
+// 		&:hover
+// 			.slick-prev,
+// 			.slick-next 
+// 				opacity: 1 !important
+
+//- Base de skeleton
+.skeleton
+	position: relative
+	widht: 100%
+	display: block!important
+	.bones
+		//box-shadow: 0 4px 10px 0 rgba(33, 33, 33, 0.15)
+		border-radius: 4px
+		position: relative
+		overflow: hidden
+		//background-color: skyblue
+		background-color: #b1bec6
+		opacity: 0.3
+		//background-image: url(https://resources.claroshop.com/medios-plazavip/swift/v1/app/gifs/loader-easing.gif)
+		//background-image: url(https://resources.claroshop.com/medios-plazavip/swift/v1/app/accesosRapidos/iconos_C_Videojuegos.png)
+		//background-image: url(https://resources.claroshop.com/medios-plazavip/swift/v1/app/gifs/loading_classic.gif)
+		background-repeat: no-repeat
+		//background-size: 100% 100%
+		background-size: cover
+		// &:before
+		// 	content: " "
+		// 	display: block
+		// 	position: absolute
+		// 	width: 100%
+		// 	height: 100%
+
+//- skeleton card de producto
+.cardProduct
+	&.skeleton
+		.cardGrid &
+			max-width: calc(25% - 20px)
+		.bones
+			&.btnWishlist
+				width: 25px
+				border-radius: 50%
+				opacity: 0.5
+				&:after 
+					content: none
+			&.img
+				display: block
+				position: relative
+				margin: auto
+				max-height: 230px
+				height: 100vh
+				min-height: 140px
+				max-width: 80%
+				width: 100%
+				.cardLine &
+					max-width: 30%
+					max-height: 200px
+				@media only screen and (max-width: 600px)
+					max-height: 140px
+					max-width: 50%
+			&.contDataCard
+				background-color: transparent
+				box-shadow: none
+				opacity: 1
+			&.h4 
+				width: 100%
+				display: block
+				height: 14px
+			&.h5 
+				width: 80%
+				height: 4px
+				margin-bottom: 8px
+			&.envioGratis
+				width: 53%
+				display: block
+				height: 20px
+			.cardSkel
+				display: flex
+				flex-direction: row
+		
+		.cardSkel
+			display: flex
+			width: 100%
+			color: inherit
+			text-decoration: none
+			flex-direction: column
+			.cardLine &
+				flex-direction: row
+
+//-skeleton slider Principal
+.sliderPrincipal
+	.container
+		&.skeleton
+			overflow: scroll
+			box-sizing: border-box
+			display: -webkit-box!important
+			.img
+				&.bones
+					width: 100%
+					max-width: calc(41vw - 40px)
+					margin: 0 20px
+					&:before
+						content: ""
+						width: 1px
+						margin-left: -2px
+						float: left
+						height: 0
+						padding-top: 450px / 800px * 100%
+					&:after
+						content: ""
+						display: table
+						clear: both

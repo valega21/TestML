@@ -1,0 +1,55 @@
+@import '../../sass/_abstracts'
+
+.enlaceResult
+    text-decoration: none
+    color: black
+.cardResult
+    padding: 2%
+    display: flex
+    width: 90%
+    +mediaMax480
+        display: block
+    .sectionLeft
+        width: 30%
+        text-align: center
+        +mediaMax480
+            width: 100%
+        img
+            width: 100px
+            height: auto
+    .sectionRight
+        width: 70%
+        +mediaMax780
+            padding-top: 10%
+        +mediaMax480
+            width: 100%
+            padding-top: 2%
+        .boxPrice
+            height: 20px
+            display: flex
+            align-items: center
+            .precio1
+                padding-right: 2%
+                font-size: 28px
+            img
+                width: 20px
+                height: 20px
+                position: relative
+                bottom: -5px
+        .ubicacion
+            text-align: right
+            color: gray
+            +mediaMax480
+                position: relative
+                top: -33px
+        .boxTitle
+            width: 65%
+            +mediaMax480
+                width: 100%
+            .title
+                font-size: 18px
+                font-weight: 500
+.border
+    border-bottom: 1px solid #ededed
+    width: 80%
+    margin-left: 10%

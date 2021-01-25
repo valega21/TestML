@@ -1,0 +1,293 @@
+//- Mixines
+=svgBg($name)
+	background: url('img/#{$name}.png') transparent 0 0 no-repeat
+	
+=out
+	border: 1px dotted black
+
+=bx($value: border-box)
+	box-sizing: $value
+
+=padd
+	padding: $min-spacer+3 $spacer
+
+=bgSvg($bg-url, $color)
+	background-color: $color
+
+=linked
+	color: $color-link
+	text-decoration: underline
+
+=sticky($import)
+	position: static $import
+
+=btn($bg:$primario, $color: white, $borde: transparent, $ancho: table)
+	+bx
+	margin-bottom: 10px
+	background-color: $bg
+	border: 1px solid $bg
+	font-size: 13px !important
+	text-align: center
+	text-decoration: none
+	display: table
+	padding: 8px 16px
+	cursor: pointer !important
+	color: $color !important
+	font-weight: 300 !important
+
+=btnNew($bg: $primario, $color: white, $borde: transparent, $width: 100%, $height: auto)
+	+bx
+	+flex
+	+flexDir(row)
+	+alignItem(center)
+	+justifyCont(center)
+	border-radius: 5px
+	margin-bottom: 10px
+	background-color: $bg
+	color: $color
+	font-size: 13px
+	font-weight: 300
+	text-decoration: none
+	padding: 8px 16px
+	cursor: pointer
+	width: $width
+	height: $height
+	border: 1px solid $borde
+		@if $borde == "none"
+			border: none !important
+
+=promoBanderin($bg: darkred, $color: white)
+	+bx
+	background: $bg
+	border-radius: 0
+	color: $color
+	display: inline-block
+	margin-bottom: 5px
+	padding: 10px
+	position: relative
+	width: auto
+	height: 36px
+	overflow: visible
+	z-index: 5
+	&:before,
+	&:after
+		content: ""
+		position: absolute
+		width: 0
+		height: 0
+		right: -18px
+	&:before
+		border-top: 18px solid $bg 
+		border-right: 18px solid transparent
+		top: 0
+	&:after
+		border-bottom: 18px solid $bg 
+		border-right: 18px solid transparent
+		bottom: 0
+	> span,
+	> div,
+	> p
+		text-align: center
+		position: static
+		font-size: 14px
+		left: 8px
+		top: 12px
+
+=appearance
+	appearance: none
+	&:-ms-expand
+		display: none
+
+=inputNumber
+	&::-webkit-inner-spin-button, 
+	&::-webkit-outer-spin-button
+		+appearance
+		margin: 0
+
+=aReset
+	color: inherit
+	text-decoration: none
+
+=center($value: v)
+	position: absolute
+
+=translate($X,$Y)
+	-ms-transform: translate($X, $Y)
+
+=scale($value1...)
+	-ms-transform: scale($value1)
+
+=transform($values...)
+	-ms-transform: $values
+
+=filter($values...)
+	filter: $values
+		
+=gradient($deg, $color_A, $color_B)
+	background: $color_A
+	@if $deg >=0 and $deg <=90
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color_A}', endColorstr='#{$color_B}', GradientType=0 )
+	@if $deg >=91 and $deg <=180
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color_A}', endColorstr='#{$color_B}', GradientType=1 )
+	@if $deg >=181 and $deg <=270
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color_B}', endColorstr='#{$color_A}', GradientType=0 )
+	@if $deg >=271 and $deg <=360
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color_B}', endColorstr='#{$color_A}', GradientType=1 )
+
+=opacity($valor: 5)
+	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$valor+'0'})
+
+//-Animacion
+=animation($values...)
+	-ms-animation:  $values
+
+=animationDelay($values...)
+	-ms-animation-delay:  $values
+
+=keyframes($name)
+	@-ms-keyframes #{$name}
+		@content
+
+=transition($values...)
+	-ms-transition:  $values
+
+=transitionDuration($values...)
+	-ms-transition-duration:  $values
+
+=transitionF($values...)
+	-ms-transition-timing-function:  $values
+
+=fx($elem:all, $time: 0.3s)
+	-ms-transition: $elem $time
+
+=fxS($values...)
+	-ms-transition: $values
+
+=fxr
+	-ms-transition: inherit
+
+=scrollMobile
+	overflow-x: hidden
+	overflow-y: scroll
+	-webkit-overflow-scrolling: touch
+
+=shadow($type: box , $s1: 2px, $s2: 2px, $s3: 10px, $alpha: rgba(0,0,0,0.5))
+	-ms-box-shadow: $s1 $s2 $s3 $alpha
+
+=bxShadow($values...)
+	-ms-box-shadow: $values
+	box-shadow: $values
+
+=fawesome($value, $imp: '')
+	content: $value #{$imp}
+	font-family: "FontAwesome"
+
+=icoShop($value)
+	content: $value
+	font-family: "icoClaroShop"
+	
+=calc($propiedad, $exprecion)
+	$propiedad: auto
+
+=iconBg($img: icon-menu, $ancho: 40px, $alto: 40px)
+	content: " "
+	display: inline-block
+	background: url(img/#{$img}.png) no-repeat
+	background-position: 0 0
+	width: $ancho
+	height: $alto
+
+
+//- Bloque Experimental Flex-Box
+=flex($imp: '')
+	display: table #{$imp}
+
+=flexReset
+	//- display: table
+
+=flexChild($value: auto)
+	//- -ms-flex: 1
+
+=flexDir($dir: row)
+	//- -ms-flex-direction: $dir
+	@if $dir == "row"
+		> *
+			float: left
+	@if $dir == "column"
+		> *
+			float: left
+			clear: left
+
+=flexWrap($dir: wrap)
+	//- -ms-flex-wrap: $dir
+
+=flexFlow($dir: wrap)
+	//- -ms-flex-flow: $dir
+
+=alignItem($dir: center)
+	//- -ms-flex-align: $dir
+
+=alignCont($dir: flex-start)
+	//- -ms-flex-content: $dir
+
+=alignSelf($dir: center)
+	//- -ms-flex-self: $dir
+
+=justifyCont($dir: space-between)
+	//- -ms-flex-pack: $dir
+	//- @if $dir == "flex-end"
+	//- 	-ms-flex-pack: end
+	//- @if $dir == "flex-start"
+	//- 	-ms-flex-pack: start
+	//- @if $dir == "space-around"
+	//- 	-ms-flex-pack: justify
+	//- @if $dir == "space-between"
+	//- 	-ms-flex-pack: justify
+
+=order($dir)
+	order: $dir
+	-ms-order: $dir
+
+=placeholder
+	&:-ms-input-placeholder
+		@content
+
+
+=aspectRadio1X1
+	&:before
+		content: ""
+		width: 1px
+		margin-left: 1px
+		float: left
+		height: 0
+		padding-top: 400px / 400px * 100%
+	&:after
+		content: ""
+		display: table
+		clear: both
+
+=aspectRadio4X3
+	&:before
+		content: ""
+		width: 1px
+		margin-left: 1px
+		float: left
+		height: 0
+		padding-top: 480px / 640px * 100%
+	&:after
+		content: ""
+		display: table
+		clear: both
+
+=aspectRadio16X9
+	&:before
+		content: ""
+		width: 1px
+		margin-left: 1px
+		float: left
+		height: 0
+		padding-top: 1080px / 1920px * 100%
+	&:after
+		content: ""
+		display: table
+		clear: both

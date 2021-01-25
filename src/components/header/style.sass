@@ -1,0 +1,37 @@
+@import '../../sass/_abstracts'
+
+$color-amarillo: #fff159
+
+.header_superior
+    background-color: $color-amarillo
+    width: 100%
+    +mediaMax480
+        padding-bottom: 7%
+    .container
+        display: flex
+        flex-direction: row
+        align-items: center
+        height: 68px
+        +mediaMax480
+            display: block
+            padding-bottom: 7%
+        .header_logo
+            text-align: center
+            color: #666
+            text-decoration: none
+            display: table
+            font-size: 0.95rem
+            font-weight: 300
+            height: 65px
+            margin-top: 0
+            margin-top: initial
+            position: relative
+            width: 200px
+            +mediaMax780
+                width: 150px
+            +mediaMax480
+                width: 100%
+            img
+                width: 80px
+                height: auto
+                position: relative
